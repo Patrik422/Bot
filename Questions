@@ -1,0 +1,27 @@
+from datetime import datetime
+import pytz
+def sample_main(user_input):
+    input_text = str(user_input).lower()
+    if input_text in ["/start", "hi", "hi!", "hello", "hey"]:
+        return "Hi! Im bot which can tell you current date or different time on different places. " \
+
+    if input_text in ["time", "time?"]:
+        return "Do you want to know the time in Czech, England or Australia"
+    if input_text == "czech":
+        time_zone = pytz.timezone('Europe/Prague')
+        now = datetime.now(time_zone)
+        return "Time  -" + now.strftime('%H : %M : %S')
+    if input_text == "australia":
+        time_zone = pytz.timezone('Australia/Sydney')
+        now = datetime.now(time_zone)
+        return "Time  -   " + now.strftime('%H : %M : %S')
+    if input_text == "england":
+        time_zone = pytz.timezone('Europe/London')
+        now = datetime.now(time_zone)
+        return "Time  -  " + now.strftime('%H : %M : %S')
+    if input_text in ["date", "date?,","year,","year?,"]:
+        date = datetime.now()
+        return date.strftime('%d %B %Y')
+    if input_text in ["bye", "ttyl", "good bye"]:
+        return "I hope I was useful to you.Thank you for your attention.Goodbye and have a nice day!"
+    return "Sorry,I didn't understand you, can you try this again ?"
